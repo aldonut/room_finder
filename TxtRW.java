@@ -15,13 +15,17 @@ public class TxtRW
 	      formatedSchedule.createNewFile();
 	      BufferedWriter br = new BufferedWriter(new FileWriter(formatedSchedule));
 	      
-	      String word = "";
+	      String element = "";
 	      int count = 0;
 	      String[] words = new String[17];
 	      Scanner sc = new Scanner(schedule);
+	      
+	      //first time count reaches 2
 	      boolean firstFive = true;
+	      
+	      //first time count reaches 5
 	      boolean firstTwo = true;
-	      int totalCount = 0;
+	      
 
 	      
 	        while (sc.hasNext()) 
@@ -39,7 +43,7 @@ public class TxtRW
 	        	{
 	        		if(firstFive)
 		        	{
-		        		word = "";
+		        		element = "";
 		        		firstFive = false;
 		        	}
 	        		
@@ -47,73 +51,49 @@ public class TxtRW
 	        		if(sc.hasNextDouble())
 	        		{
 	   	        	
-	        			words[count] = word;
+	        			words[count] = element;
 	        			count++;
 	        			firstFive = true;
-	        			continue;
-	        			
+	        			continue;	
 	        		}
-		        	word = word + sc.next() + " ";
+	        		
+		        	element = element + sc.next() + " ";
 		        	continue;
 	        	}
 	        	
+	        	//if you've reached the building and room number 
 	        	if(count == 10)
 	        	{
-		        	word = sc.next();
-		        	System.out.println("<" + word + ">");
-		        	System.out.println(word.substring(word.length() - 3, word.length()));
-		        	words[count] = word.substring(word.length() - 3, word.length());
+		        	element = sc.next();
+		        
+		        	//retrieves room number
+		        	words[count] = element.substring(element.length() - 3, element.length());
 		        	count++;
-		        	words[count] = word.substring(0, word.length() - 3);
-		        	System.out.println(word.substring(0, word.length() - 3));
-		        	System.out.println(words[3]);
-
+		        	
+		        	//retrieves building name
+		        	words[count] = element.substring(0, element.length() - 3);
 		        	count++;
-
 	        	}
 	        	
-	        	word = sc.next();
-	        	 words[count] = word;
+	        	element = sc.next();
+	        	words[count] = element;
 				count++;
 				
-				
+				//all columns finished, start new row.
 				if(count == 16)
 				{
 					for(int i = 0; i < 15; i++)
 					{
-						br.write(words[i] + ":");
+						br.write(words[i] + "|");
 					}
 					
 					br.write(words[15]);
 					count = 0;
-					//System.out.println(words[10] + "  " + ++totalCount);
 					firstTwo = true;
 					br.write("\n");
-					
-					
-					
-					
-						
-						
-					
-				}
-				
-				
-	        		
-	        }
-	    
-	       
-	   
-	    	   
-
-	     
-		
-		
-	      
+				}  		
+	        }     
 		sc.close();
 		br.close();
-	      
-
-
 	}
 }
