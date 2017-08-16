@@ -1,7 +1,11 @@
 # room_finder
 
-As of now I am working on converting an HTML school catalog into a .txt file and using java to read file and write out a formatted one in order to read more easily by commandline and insertion into SQL database. 
+There are two folders: old_method and screen_scrapper.
 
-If code is commented with Javadoc then for the most part it can be considered as finalized. 
+The old method is my first attemp, where I converted the HTML data into a text file and read/wrote to get elements. This took a lot time to format the actual text file in a way where I could read everything in its proper columns. 
 
-Will work on GUI last. 
+screen_scrapper is a much faster and cleaner method which user jsoup to indivisually read html elements from a webpage store values. This method is much faster because the data is already orginized and ready to be travesed. 
+
+The current DataExtraction.java is a work in progress. The initial connection has been tested, and values are read correctly. More optimization will follow.
+
+ 
