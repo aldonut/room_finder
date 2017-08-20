@@ -50,5 +50,38 @@ public class DB
 		}
 	}
 	
-	
+	public static void delete(String id)
+	{
+		assert id.length() == 5:"ID must be 5 integers";
+		
+		Connection myConn = null;
+		try{
+               myConn = DriverManager.getConnection(
+			    "jdbc:mysql://localhost:3306/rooms?autoReconnect=true&useSSL=false", "root", "chodo");
+
+		 Statement delStmt = myConn.createStatement();
+
+		 String delete = "DELETE FROM data " +
+                 "WHERE id = '" + id + "'";
+  					//testing
+                 System.out.println(delete);
+  		
+		 delStmt.executeUpdate(delete);
+ 			}
+
+ 		catch (Exception e) {System.out.println(e);}
+		
+		finally
+		{ 
+			 if(myConn!=null)
+				try 
+			 	{
+					myConn.close();
+			 	} 
+			 	catch (SQLException e)
+			 	{
+					e.printStackTrace();
+			 	}
+		}
+	}	
 }
