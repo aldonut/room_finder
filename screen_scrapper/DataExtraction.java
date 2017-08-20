@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -44,12 +42,19 @@ public class DataExtraction
 	            Elements cols = row.select("td"); //getting each col of row
 	            java.util.Iterator<Element> colIter = cols.iterator(); 
 	            	
-	            //skip all useless info
-	            for( i = 0; i < 6; i++)
-	            {
-	            	colIter.next();
+	            
+	            
+	            	colIter.next(); //skip name
+	            	i++; //let exception know you are done.
   	
-	            }
+	            	String classID = colIter.next().text();
+	            	
+	          
+	            	for(i = 0; i < 4; i++)
+	            	{
+	            		colIter.next();
+	            	}
+	            
 	            	
 	            			            
 	            String days = colIter.next().text();
@@ -61,14 +66,14 @@ public class DataExtraction
 	 	            		&& times.length() != 0 && !times.equals("-")
 	 	            		&& days.length() != 0)
 	            	 {
-	            		 Class theClass = new Class(days,times,location);
+	            		 Class theClass = new Class(classID, days,times,location);
 	            		 DB.insert(theClass);
 	            		 System.out.println("\ndays:*"  +
 			                	 days + "*\ntimes:*"  +  times + "*\nlocation:*" + location + "*"
 			                	 + "\n" + colIter.next().text() + "\n"); 
 	            	 }
 	            
-	            topCount++; //keeps count on elements 
+	            topCount++; //keeps count on elements until "back to top" is reached.
 	           
 	 
 	        }
@@ -85,4 +90,3 @@ public class DataExtraction
 		}
 	}
 }
-

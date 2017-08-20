@@ -1,5 +1,3 @@
-
-
 public class Class 
 {
 	private String  days;
@@ -9,9 +7,11 @@ public class Class
 	private String  endTod;
 	private String  building = "";
 	private String  room;
+	private String  classID;
 	
-	public Class(String days, String time, String location)
+	public Class(String classID,String days, String time, String location)
 	{
+		this.classID = classID;
 		this.days = days;
 		timeExtractor(time);
 		locationExtractor(location);
@@ -120,7 +120,17 @@ public class Class
 		return room;
 	}
 	
+	public void setID(String id)
+	{
+		classID = id;
+
+	}
+	
+	public String getID()
+	{
+		return classID;
+	}
+	
 	
 	
 }
-
